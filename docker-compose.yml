@@ -1,0 +1,54 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: app_db
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  flyway:
+    image: flyway/flyway:10
+    container_name: app_flyway
+    depends_on:
+      db:
+        condition: service_healthy
+    command:
+      - -url=jdbc:postgresql://db:5432/${POSTGRES_DB}
+      - -user=${POSTGRES_USER}
+      - -password=${POSTGRES_PASSWORD}
+      - -connectRetries=20
+      - migrate
+    volumes:
+      - ./database/flyway/sql:/flyway/sql:ro
+    restart: "no"
+
+  web:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: app_web
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
+      flyway:
+        condition: service_completed_successfully
+    ports:
+      - "8000:8000"
+    volumes:
+      - logs:/logs
+
+volumes:
+  db_data:
+  logs:
