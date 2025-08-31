@@ -19,4 +19,4 @@ ENV FLASK_APP=app.main:app
 
 EXPOSE 8000
 
-CMD ["gunicorn", "-c", "gunicorn.conf.py", "app.main:app"]
+CMD ["gunicorn", "-c", "gunicorn.py", "app.main:app"]
