@@ -10,4 +10,4 @@ def create_user(payload: UserCreate) -> UserOut:
 
 def list_users() -> List[UserOut]:
     rows = repo.list_users()
-    return [UserOut(id=r[0], email=r[1], name=r[2]) for r in rows]
+    return [UserOut.model_validate(row) for row in rows]
