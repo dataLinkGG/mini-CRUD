@@ -10,6 +10,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # App
 COPY app ./app
+COPY gunicorn.py ./
 
 # Create logs dir (may be overridden by volume)
 RUN mkdir -p /logs
