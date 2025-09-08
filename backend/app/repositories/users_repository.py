@@ -1,5 +1,5 @@
 from typing import List, Optional, Tuple
-from .db import get_conn, put_conn
+from .database import get_conn, put_conn
 
 SQL_INSERT_USER = """
 INSERT INTO users (email, name) VALUES (%s, %s)
