@@ -2,7 +2,6 @@ import psycopg2
 from psycopg2.pool import SimpleConnectionPool
 from typing import Optional
 
-
 _pool: Optional[SimpleConnectionPool] = None
 
 
@@ -16,3 +15,10 @@ def init_pool(dsn: str):
 def get_conn():
     if _pool is None:
         raise RuntimeError("DB pool not initialized")
+    return _pool.getconn()
+
+
+def put_conn(conn):
+    if _pool is None:
+        raise RuntimeError("DB pool not initialized")
+    _pool.putconn(conn)
