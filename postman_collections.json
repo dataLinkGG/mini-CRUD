@@ -1,7 +1,9 @@
 {
   "info": {
+    "_postman_id": "473a5e86-a679-43e2-bf81-51dd42950230",
     "name": "Minimal Flask No-ORM API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "15121380"
   },
   "item": [
     {
@@ -10,13 +12,12 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:8000/api/health",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "8000",
+          "raw": "{{baseURL}}/api/health",
+          "host": ["{{baseURL}}"],
           "path": ["api", "health"]
         }
-      }
+      },
+      "response": []
     },
     {
       "name": "List Users",
@@ -24,31 +25,41 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:8000/api/users",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "8000",
+          "raw": "{{baseURL}}/api/users",
+          "host": ["{{baseURL}}"],
           "path": ["api", "users"]
         }
-      }
+      },
+      "response": []
     },
     {
       "name": "Create User",
       "request": {
         "method": "POST",
-        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
         "body": {
           "mode": "raw",
           "raw": "{\n  \"email\": \"alice@example.com\",\n  \"name\": \"Alice\"\n}"
         },
         "url": {
-          "raw": "http://localhost:8000/api/users",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "8000",
+          "raw": "{{baseURL}}/api/users",
+          "host": ["{{baseURL}}"],
           "path": ["api", "users"]
         }
-      }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseURL",
+      "value": "",
+      "type": "default"
     }
   ]
 }
