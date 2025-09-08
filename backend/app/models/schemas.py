@@ -6,7 +6,7 @@ class UserCreate(BaseModel):
     name: str = Field(min_length=1, max_length=100)
 
 
-class UserOut(BaseModel):
+class UserRead(BaseModel):
     id: int
     email: EmailStr
     name: str
