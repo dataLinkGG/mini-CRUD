@@ -1,4 +1,5 @@
 from typing import List, Optional, Tuple
+from psycopg2.extras import RealDictCursor
 from .database import get_conn, put_conn
 
 SQL_INSERT_USER = """
@@ -30,7 +31,7 @@ def create_user(email: str, name: str) -> Tuple[int, str, str]:
 def list_users() -> List[Tuple[int, str, str]]:
     conn = get_conn()
     try:
-        with conn.cursor() as cur:
+        with conn.cursor(cursor_factory=RealDictCursor) as cur:
             cur.execute(SQL_LIST_USERS)
             return cur.fetchall()
     finally:
