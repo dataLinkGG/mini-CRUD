@@ -2,9 +2,9 @@ from flask import Flask
 from app.config import Config
 from app.utils.logger import setup_logging
 from app.utils.errors import register_error_handlers
-from app.repositories.db import init_pool
-from app.routes import api
-from app.routes import health, users  # noqa: F401 (ensures routes load)
+from app.repositories.database import init_pool
+from app.controllers import api
+from app.controllers import health, users  # noqa: F401 (ensures routes load)
 
 config = Config()
 
