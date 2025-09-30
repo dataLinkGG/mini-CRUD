@@ -7,4 +7,4 @@ worker_class = "gthread"
 threads = 2
 timeout = int(os.getenv("GUNICORN_TIMEOUT", 30))
 accesslog = "-"  # stdout
-errorlog = "-"   # stderr
+errorlog = "-"  # stderr
