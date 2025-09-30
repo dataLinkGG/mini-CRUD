@@ -1,0 +1,15 @@
+repos:
+  - repo: local
+    hooks:
+      - id: python-syntax-check
+        name: Check Python syntax
+        entry: python -m py_compile
+        language: system
+        types: [python]
+
+      - id: black
+        name: Black code formatter
+        entry: black
+        language: system
+        types: [python]
+        args: [--line-length=79]
