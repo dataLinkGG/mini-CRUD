@@ -12,4 +12,4 @@ repos:
         entry: black
         language: system
         types: [python]
-        args: [--line-length=79]
+        args: [--line-length=88]
