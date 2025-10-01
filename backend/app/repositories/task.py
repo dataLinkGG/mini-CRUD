@@ -19,11 +19,11 @@ FROM tasks WHERE id = %s;
 """
 
 
-def create_task(name: str, value: Optional[float], scheduled_to, executed_at) -> Tuple:
+def create_task(name: str, value: Optional[float], scheduled_to, executed_at) -> dict:
     conn = get_conn()
     try:
         with conn:
-            with conn.cursor() as cur:
+            with conn.cursor(cursor_factory=RealDictCursor) as cur:
                 cur.execute(SQL_INSERT_TASK, (name, value, scheduled_to, executed_at))
                 return cur.fetchone()
     finally:
