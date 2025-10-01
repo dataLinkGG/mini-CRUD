@@ -4,7 +4,7 @@ from app.models.task import TaskCreate
 from app.services.task import Tasks
 
 
-@api.post("/tasks")
+@api.post("/task")
 def create_task():
     data = request.get_json(force=True, silent=False)
     payload = TaskCreate(**data)
