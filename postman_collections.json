@@ -44,13 +44,21 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"email\": \"alice@example.com\",\n  \"name\": \"Alice\"\n}"
+          "raw": "{\n  \"email\": \"alice91@example.com\",\n  \"name\": \"Alice\"\n}"
         },
         "url": {
           "raw": "{{baseURL}}/api/users",
           "host": ["{{baseURL}}"],
           "path": ["api", "users"]
         }
+      },
+      "response": []
+    },
+    {
+      "name": "List Tasks",
+      "request": {
+        "method": "GET",
+        "header": []
       },
       "response": []
     }
