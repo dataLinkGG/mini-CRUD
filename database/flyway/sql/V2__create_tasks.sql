@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS tasks (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(200) NOT NULL,
+    value DOUBLE PRECISION,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    scheduled_to TIMESTAMPTZ NOT NULL,
+    executed_at TIMESTAMPTZ
+);
