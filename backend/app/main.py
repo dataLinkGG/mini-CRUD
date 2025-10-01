@@ -4,7 +4,7 @@ from app.utils.logger import setup_logging
 from app.utils.errors import register_error_handlers
 from app.repositories.database import init_pool
 from app.controllers import api
-from app.controllers import health, users  # noqa: F401 (ensures routes load)
+from app.controllers import health, users, task  # noqa: F401 (ensures routes load)
 
 config = Config()
 
