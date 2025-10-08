@@ -1,6 +1,6 @@
 from typing import List
 from app.models.task import TaskCreate, TaskRead
-from app.repositories.task import create_task, list_tasks, update_task_name
+from app.repositories.task import create_task, delete_task, list_tasks, update_task_name
 
 
 class Tasks:
@@ -25,3 +25,8 @@ class Tasks:
         if not row:
             raise ValueError("Task not found")
         return TaskRead.model_validate(row)
+
+    @staticmethod
+    def delete(task_id: int) -> bool:
+        deleted_id = delete_task(task_id)
+        return deleted_id is not None
