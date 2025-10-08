@@ -1,6 +1,6 @@
 from flask import request, jsonify
 from . import api
-from app.models.task import TaskCreate
+from app.models.task import TaskCreate, TaskUpdate
 from app.services.task import Tasks
 
 
@@ -16,3 +16,14 @@ def create_task():
 def list_tasks():
     tasks = Tasks.get_many()
     return jsonify([t.model_dump() for t in tasks]), 200
+
+
+@api.patch("/task/<int:task_id>")
+def update_task(task_id: int):
+    data = request.get_json(force=True, silent=False)
+    payload = TaskUpdate(**data)
+    try:
+        task = Tasks.update_name(task_id, payload.name)
+        return jsonify(task.model_dump()), 200
+    except ValueError:
+        return jsonify({"error": "Task not found"}), 404

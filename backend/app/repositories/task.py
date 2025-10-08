@@ -18,6 +18,13 @@ SELECT id, name, value, created_at, scheduled_to, executed_at
 FROM tasks WHERE id = %s;
 """
 
+SQL_UPDATE_TASK_NAME = """
+UPDATE tasks
+SET name = %s
+WHERE id = %s
+RETURNING id, name, value, created_at, scheduled_to, executed_at;
+"""
+
 
 def create_task(name: str, value: Optional[float], scheduled_to, executed_at) -> dict:
     conn = get_conn()
@@ -46,5 +53,16 @@ def get_task(task_id: int) -> Optional[dict]:
         with conn.cursor(cursor_factory=RealDictCursor) as cur:
             cur.execute(SQL_GET_TASK, (task_id,))
             return cur.fetchone()
+    finally:
+        put_conn(conn)
+
+
+def update_task_name(task_id: int, name: str) -> Optional[dict]:
+    conn = get_conn()
+    try:
+        with conn:
+            with conn.cursor(cursor_factory=RealDictCursor) as cur:
+                cur.execute(SQL_UPDATE_TASK_NAME, (name, task_id))
+                return cur.fetchone()
     finally:
         put_conn(conn)

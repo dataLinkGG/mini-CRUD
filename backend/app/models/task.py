@@ -18,3 +18,7 @@ class TaskRead(BaseModel):
     created_at: datetime
     scheduled_to: datetime
     executed_at: Optional[datetime] = None
+
+
+class TaskUpdate(BaseModel):
+    name: str = Field(min_length=1, max_length=200)
