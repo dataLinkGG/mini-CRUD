@@ -24,20 +24,15 @@ class CustomJSONProvider(DefaultJSONProvider):
 app = Flask(__name__)
 app.json = CustomJSONProvider(app)
 
-# Logging
 setup_logging(config.log_dir, config.log_level)
 
-# DB pool
 init_pool(config.db_dsn)
 
-# Blueprints
 app.register_blueprint(api, url_prefix="/api")
 
-# Errors
 register_error_handlers(app)
 
 
-# Optional root route
 @app.get("/")
 def root():
     return {"service": "flask-no-orm", "env": config.env}

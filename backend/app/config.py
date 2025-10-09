@@ -2,7 +2,6 @@ import os
 from dataclasses import dataclass
 from dotenv import load_dotenv
 
-# Load .env if present (compose also injects envs)
 load_dotenv(override=False)
 
 

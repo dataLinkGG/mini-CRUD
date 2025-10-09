@@ -6,5 +6,5 @@ workers = int(os.getenv("GUNICORN_WORKERS", multiprocessing.cpu_count() // 2 or 
 worker_class = "gthread"
 threads = 2
 timeout = int(os.getenv("GUNICORN_TIMEOUT", 30))
-accesslog = "-"  # stdout
-errorlog = "-"  # stderr
+accesslog = "-"
+errorlog = "-"
