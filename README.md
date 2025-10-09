@@ -1,19 +1,19 @@
-# 🚀 Project Setup Guide
+# Project Setup Guide
 
 This repository contains a **Dockerized backend application** with database services.  
 Follow the steps below to get your environment up and running.
 
 ---
 
-## 1. Requirements
+## 1. ⚒️ Requirements/Tools
 
 - [Docker](https://docs.docker.com/get-docker/)
 - [Docker Compose](https://docs.docker.com/compose/install/)
-- [Postman](https://www.postman.com/downloads/)
+- [Postman](https://www.postman.com/downloads/) (optional)
 
 ---
 
-## 2. Environment Variables
+## 2. ⚙️ Environment Variables
 
 - Copy the provided example file:
 
@@ -25,7 +25,7 @@ Follow the steps below to get your environment up and running.
 
 - ⚠️ Never commit your .env file. Only .env.example is versioned.
 
-### 3. Running the Project
+## 3. ⚡Running the Project
 
 Build and start all services:
 
@@ -45,7 +45,7 @@ Stop services and clean volumes (removes DB data):
 docker compose down -v
 ```
 
-### 4. Docker Notes
+## 4. 🐳 Docker Notes
 
 Docker ps should not list stray processes. After running docker compose down, the project should not leave containers running in the background.
 
@@ -57,7 +57,7 @@ docker ps
 
 If no containers appear, the environment is clean.
 
-### 5. Using Postman
+## 5. 🚀 Using Postman
 
 We provide a Postman collection JSON file for easier testing.
 
@@ -65,9 +65,27 @@ We provide a Postman collection JSON file for easier testing.
 
 2. Click Import → Upload Files
 
-3. Select the provided .postman_collection.json
+3. Select the provided .postman_collection.json from this project
 
 4. The collection will appear in your workspace with predefined requests
 
 - Make sure your .env and Docker services are running before testing.
 - Update environment variables in Postman if your host/port differ from defaults.
+
+## 6. 🧩 Code Style
+
+- Prefer explicit naming over abbreviations (e.g. Configuration over Config, but use single-letter inside loops, comprehensions, or context managers)
+
+- Avoid redundant comments — no syntax or “section divider” comments
+
+- Docker Compose manages all components: backend, frontend, PostgreSQL, etc.
+
+- The project loosely follows MVC principles, adapted for Flask’s flexibility:
+
+| Layer          | Folder          | Responsibility                                           |
+| -------------- | --------------- | -------------------------------------------------------- |
+| **Controller** | `controllers/`  | Defines endpoints and HTTP request/response logic        |
+| **Model**      | `models/`       | Defines data contracts and validation using **Pydantic** |
+| **Service**    | `services/`     | Business logic, orchestration between repositories       |
+| **Repository** | `repositories/` | Database access via raw SQL                              |
+| **Utils**      | `utils/`        | Cross-cutting helpers (logging, error handling, etc.)    |
