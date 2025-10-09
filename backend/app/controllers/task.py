@@ -26,12 +26,12 @@ def update_task(task_id: int):
         task = Tasks.update_name(task_id, payload.name)
         return jsonify(task.model_dump()), 200
     except ValueError:
-        return jsonify({"error": "Task not found"}), 404
+        return jsonify({"error": f"Task id {task_id} not found"}), 404
 
 
 @api.delete("/task/<int:task_id>")
 def delete_task(task_id: int):
     deleted = Tasks.delete(task_id)
     if not deleted:
-        return jsonify({"error": "Task not found"}), 404
-    return jsonify({"message": "Task deleted"}), 200
+        return jsonify({"error": f"Task id {task_id} not found"}), 404
+    return jsonify({"message": f"Task id {task_id} deleted"}), 200
