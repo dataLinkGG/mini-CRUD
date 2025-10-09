@@ -89,3 +89,15 @@ We provide a Postman collection JSON file for easier testing.
 | **Service**    | `services/`     | Business logic, orchestration between repositories       |
 | **Repository** | `repositories/` | Database access via raw SQL                              |
 | **Utils**      | `utils/`        | Cross-cutting helpers (logging, error handling, etc.)    |
+
+### 🧭 API Naming Convention (Temporary)
+- **Current:**  
+  - `GET /api/tasks` → Retrieve list of tasks  
+  - `POST /api/task` → Create a single task  
+  - `PATCH /api/task/:id` → Update a task  
+  - `DELETE /api/task/:id` → Delete a task  
+
+- **Rationale:**  
+  The singular `/task` for creation emphasizes that a single task is created per request.  
+  The plural `/tasks` for listing aligns with REST expectations for collection retrieval.  
+  This may be unified to fully plural (`/tasks`) in a future revision once the API stabilizes.
