@@ -7,140 +7,183 @@
 	},
 	"item": [
 		{
+			"name": "Tasks",
+			"item": [
+				{
+					"name": "/tasks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/tasks",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/task",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Turn off the lights\",\r\n  \"scheduled_to\": \"2025-10-02T10:00:00Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/task",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"task"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/task/:id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Backup daily\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/task/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"task",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/task/:id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Backup daily\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/task/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"task",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Health",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{baseURL}}/api/health",
-					"host": [
-						"{{baseURL}}"
-					],
-					"path": [
-						"api",
-						"health"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "List Users",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{baseURL}}/api/users",
-					"host": [
-						"{{baseURL}}"
-					],
-					"path": [
-						"api",
-						"users"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create User",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"email\": \"alice91@example.com\",\n  \"name\": \"Alice\"\n}"
-				},
-				"url": {
-					"raw": "{{baseURL}}/api/users",
-					"host": [
-						"{{baseURL}}"
-					],
-					"path": [
-						"api",
-						"users"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "List Tasks",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{baseURL}}/api/tasks",
-					"host": [
-						"{{baseURL}}"
-					],
-					"path": [
-						"api",
-						"tasks"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Task",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"name\": \"Turn off the lights\",\r\n  \"scheduled_to\": \"2025-10-02T10:00:00Z\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"item": [
+				{
+					"name": "/health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/health",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"health"
+							]
 						}
-					}
-				},
-				"url": {
-					"raw": "{{baseURL}}/api/task",
-					"host": [
-						"{{baseURL}}"
-					],
-					"path": [
-						"api",
-						"task"
-					]
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "Update Task",
-			"request": {
-				"method": "PATCH",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"name\": \"Backup daily\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "Users",
+			"item": [
+				{
+					"name": "/users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/users",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{baseURL}}/api/task/1",
-					"host": [
-						"{{baseURL}}"
-					],
-					"path": [
-						"api",
-						"task",
-						"1"
-					]
+				{
+					"name": "/user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"alice91@example.com\",\n  \"name\": \"Alice\"\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/users",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		}
 	],
 	"variable": [
