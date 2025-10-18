@@ -3,7 +3,7 @@ from . import api
 from app.models.users import UserCreate
 from app.services.users import Users
 
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token, jwt_required
 from app.services.users import authenticate_user
 
 
@@ -16,6 +16,7 @@ def create_user():
 
 
 @api.get("/users")
+@jwt_required()
 def list_users():
     users = Users.get_many()
     return jsonify([u.model_dump() for u in users]), 200
