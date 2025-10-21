@@ -1,6 +1,6 @@
 from flask import request, jsonify
 
-from backend.app.repositories.users import get_user
+from app.repositories.users import get_user
 from . import api
 from app.models.users import UserCreate
 from app.services.users import Users
