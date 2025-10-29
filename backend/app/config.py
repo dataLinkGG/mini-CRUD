@@ -20,6 +20,8 @@ class Config:
     JWT_SECRET_KEY: str = os.getenv("SECRET_KEY", "fallback-secret-for-dev")
     JWT_TOKEN_LOCATION: list[str] = field(default_factory=lambda: ["headers"])
     JWT_ACCESS_TOKEN_EXPIRES: int = 3600
+    JWT_HEADER_NAME: str = "Authorization"
+    JWT_HEADER_TYPE: str = "Bearer"
 
     @property
     def db_dsn(self) -> str:
