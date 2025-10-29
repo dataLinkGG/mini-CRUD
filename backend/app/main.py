@@ -9,8 +9,6 @@ from app.controllers import health, users, task  # noqa: F401 (ensures routes lo
 from pydantic import BaseModel
 from datetime import datetime
 
-config = Config()
-
 
 class CustomJSONProvider(DefaultJSONProvider):
     def default(self, obj):
@@ -22,6 +20,8 @@ class CustomJSONProvider(DefaultJSONProvider):
 
 
 app = Flask(__name__)
+config = Config()
+app.config.from_mapping(config.__dict__)
 app.json = CustomJSONProvider(app)
 
 setup_logging(config.log_dir, config.log_level)
