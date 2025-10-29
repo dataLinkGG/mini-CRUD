@@ -1,5 +1,6 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask.json.provider import DefaultJSONProvider
+from flask_jwt_extended import JWTManager
 from app.config import Config
 from app.utils.logger import setup_logging
 from app.utils.errors import register_error_handlers
@@ -31,6 +32,18 @@ init_pool(config.db_dsn)
 app.register_blueprint(api, url_prefix="/api")
 
 register_error_handlers(app)
+
+jwt = JWTManager(app)
+
+
+@jwt.unauthorized_loader
+def unauthorized_callback(err):
+    return jsonify({"msg": "Missing or invalid token"}), 401
+
+
+@jwt.invalid_token_loader
+def invalid_token_callback(err):
+    return jsonify({"msg": "Invalid token"}), 422
 
 
 @app.get("/")
