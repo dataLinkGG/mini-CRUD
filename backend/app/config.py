@@ -17,7 +17,7 @@ class Config:
     db_user: str = os.getenv("POSTGRES_USER", "appuser")
     db_password: str = os.getenv("POSTGRES_PASSWORD", "apppassword")
 
-    JWT_SECRET_KEY: str = os.getenv("SECRET_KEY", "fallback-secret-for-dev")
+    JWT_SECRET_KEY: str = os.getenv("JWT_SECRET_KEY", "fallback-secret-for-dev")
     JWT_TOKEN_LOCATION: list[str] = field(default_factory=lambda: ["headers"])
     JWT_ACCESS_TOKEN_EXPIRES: int = 3600
     JWT_HEADER_NAME: str = "Authorization"
