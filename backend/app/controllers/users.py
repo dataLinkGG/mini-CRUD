@@ -20,9 +20,11 @@ def create_user():
 @api.get("/me")
 @jwt_required()
 def get_current_user():
-    current_user_id = get_jwt_identity()
+    current_user_id = int(get_jwt_identity())
     user = get_user(current_user_id)
-    return jsonify(user.model_dump()), 200
+    if not user:
+        return {"msg": "User not found"}, 404
+    return jsonify(user), 200
 
 
 @api.post("/login")
@@ -37,7 +39,7 @@ def login_user():
     user = authenticate_user(username, password)
 
     if user:
-        access_token = create_access_token(identity=user["id"])
+        access_token = create_access_token(identity=str(user["id"]))
 
         return {"access_token": access_token}, 200
     else:

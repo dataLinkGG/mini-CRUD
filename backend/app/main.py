@@ -43,7 +43,7 @@ def unauthorized_callback(err):
 
 @jwt.invalid_token_loader
 def invalid_token_callback(err):
-    return jsonify({"msg": "Invalid token"}), 422
+    return jsonify({"msg": f"Invalid token: {err}"}), 422
 
 
 @app.get("/")

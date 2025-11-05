@@ -45,12 +45,12 @@ def list_users() -> List[Dict[str, Any]]:
         put_conn(conn)
 
 
-def get_user(user_id: int) -> Optional[Tuple[int, str, str]]:
+def get_user(user_id: int) -> Optional[Dict[str, Any]]:
     conn = get_conn()
     try:
-        with conn.cursor() as cur:
+        with conn.cursor(cursor_factory=RealDictCursor) as cur:
             cur.execute(SQL_GET_USER, (user_id,))
-            return cur.fetchone()
+            return cur.fetchone() 
     finally:
         put_conn(conn)
 
