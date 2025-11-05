@@ -1,11 +1,11 @@
-from typing import List, Optional, Tuple
+from typing import List, Optional
 from psycopg2.extras import RealDictCursor
 from .database import get_conn, put_conn
 
 SQL_INSERT_TASK = """
-INSERT INTO tasks (name, value, scheduled_to, executed_at)
-VALUES (%s, %s, %s, %s)
-RETURNING id, name, value, created_at, scheduled_to, executed_at;
+INSERT INTO tasks (name, value, scheduled_to, executed_at, user_id)
+VALUES (%s, %s, %s, %s, %s)
+RETURNING id, name, value, created_at, scheduled_to, executed_at, user_id;
 """
 
 SQL_LIST_TASKS = """
@@ -30,12 +30,12 @@ DELETE FROM tasks WHERE id = %s RETURNING id;
 """
 
 
-def create_task(name: str, value: Optional[float], scheduled_to, executed_at) -> dict:
+def create_task(name: str, value: Optional[float], scheduled_to, executed_at, user_id) -> dict:
     conn = get_conn()
     try:
         with conn:
             with conn.cursor(cursor_factory=RealDictCursor) as cur:
-                cur.execute(SQL_INSERT_TASK, (name, value, scheduled_to, executed_at))
+                cur.execute(SQL_INSERT_TASK, (name, value, scheduled_to, executed_at, user_id))
                 return cur.fetchone()
     finally:
         put_conn(conn)

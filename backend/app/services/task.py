@@ -5,12 +5,13 @@ from app.repositories.task import create_task, delete_task, list_tasks, update_t
 
 class Tasks:
     @staticmethod
-    def create(payload: TaskCreate) -> TaskRead:
+    def create(payload: TaskCreate, user_id) -> TaskRead:
         row = create_task(
             payload.name,
             payload.value,
             payload.scheduled_to,
             payload.executed_at,
+            user_id
         )
         return TaskRead.model_validate(row)
 

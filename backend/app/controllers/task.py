@@ -1,5 +1,5 @@
 from flask import request, jsonify
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import get_jwt_identity, jwt_required
 from . import api
 from app.models.task import TaskCreate, TaskUpdate
 from app.services.task import Tasks
@@ -8,9 +8,10 @@ from app.services.task import Tasks
 @api.post("/task")
 @jwt_required()
 def create_task():
+    current_user_id = get_jwt_identity()
     data = request.get_json(force=True, silent=False)
     payload = TaskCreate(**data)
-    task = Tasks.create(payload)
+    task = Tasks.create(payload, user_id=current_user_id)
     return jsonify(task.model_dump()), 201
 
 
