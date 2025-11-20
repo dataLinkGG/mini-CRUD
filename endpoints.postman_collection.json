@@ -1,10 +1,9 @@
 {
 	"info": {
-		"_postman_id": "473a5e86-a679-43e2-bf81-51dd42950230",
-		"name": "Minimal Flask No-ORM API",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "15121380"
-	},
+			"_postman_id": "af759c23-7ba7-4130-b367-0a0a57e43622",
+			"name": "Minimal Flask No-ORM API",
+			"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		},
 	"item": [
 		{
 			"name": "Tasks",
@@ -12,6 +11,16 @@
 				{
 					"name": "/tasks",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -118,6 +127,9 @@
 				{
 					"name": "/health",
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -139,10 +151,37 @@
 			"name": "Users",
 			"item": [
 				{
-					"name": "/users",
+					"name": "/me",
 					"request": {
 						"method": "GET",
 						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/me",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/users",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"{{user_email}}\",\n  \"name\": \"{{user_name}}\",\n  \"password\": \"{{user_password}}\"\n}"
+						},
 						"url": {
 							"raw": "{{baseURL}}/api/users",
 							"host": [
@@ -157,8 +196,31 @@
 					"response": []
 				},
 				{
-					"name": "/user",
+					"name": "/login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"if (jsonData && jsonData.access_token) {\r",
+									"    pm.environment.set(\"auth_token\", jsonData.access_token);\r",
+									"    console.log(\"Access Token Set: \" + pm.environment.get(\"auth_token\"));\r",
+									"} else {\r",
+									"    console.error(\"Error: The access_token was not found in the response.\");\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -168,16 +230,16 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"email\": \"alice91@example.com\",\n  \"name\": \"Alice\"\n}"
+							"raw": "{\n  \"username\": \"{{user_email}}\",\n  \"password\": \"{{user_password}}\"\n}"
 						},
 						"url": {
-							"raw": "{{baseURL}}/api/users",
+							"raw": "{{baseURL}}/api/login",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
 								"api",
-								"users"
+								"login"
 							]
 						}
 					},
@@ -186,11 +248,44 @@
 			]
 		}
 	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{auth_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
 	"variable": [
 		{
 			"key": "baseURL",
-			"value": "",
-			"type": "default"
+			"value": ""
 		}
 	]
 }

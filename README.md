@@ -10,6 +10,7 @@ Follow the steps below to get your environment up and running.
 - [Docker](https://docs.docker.com/get-docker/)
 - [Docker Compose](https://docs.docker.com/compose/install/)
 - [Postman](https://www.postman.com/downloads/) (optional)
+- [DBeaver](https://dbeaver.io/download/) (optional)
 
 ---
 
@@ -91,11 +92,13 @@ We provide a Postman collection JSON file for easier testing.
 | **Utils**      | `utils/`        | Cross-cutting helpers (logging, error handling, etc.)    |
 
 ### 🧭 API Naming Convention (Temporary)
-- **Current:**  
-  - `GET /api/tasks` → Retrieve list of tasks  
-  - `POST /api/task` → Create a single task  
-  - `PATCH /api/task/:id` → Update a task  
-  - `DELETE /api/task/:id` → Delete a task  
+
+- **Current:**
+
+  - `GET /api/tasks` → Retrieve list of tasks
+  - `POST /api/task` → Create a single task
+  - `PATCH /api/task/:id` → Update a task
+  - `DELETE /api/task/:id` → Delete a task
 
 - **Rationale:**  
   The singular `/task` for creation emphasizes that a single task is created per request.  
