@@ -1,0 +1,18 @@
+---
+description: Controller endpoints and temporary task route names
+globs: backend/app/controllers/**/*.py
+alwaysApply: false
+---
+
+# Controllers
+
+Define endpoints and HTTP request/response logic.
+
+## Task routes (temporary)
+
+- `GET /api/tasks` — retrieve the list of tasks
+- `POST /api/task` — create a single task
+- `PATCH /api/task/:id` — update a task
+- `DELETE /api/task/:id` — delete a task
+
+Singular `/task` on create means one task is created per request. Plural `/tasks` on list matches collection retrieval. These may be unified to fully plural (`/tasks`) once the API stabilizes.

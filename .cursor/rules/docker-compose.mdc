@@ -1,0 +1,9 @@
+---
+description: Docker Compose owns every project component
+globs: docker-compose.yml
+alwaysApply: false
+---
+
+# Docker Compose
+
+Docker Compose manages all components: backend, frontend, PostgreSQL, etc.

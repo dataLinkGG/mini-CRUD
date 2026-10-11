@@ -1,0 +1,9 @@
+---
+description: Repository database access
+globs: backend/app/repositories/**/*.py
+alwaysApply: false
+---
+
+# Repositories
+
+Database access via raw SQL.

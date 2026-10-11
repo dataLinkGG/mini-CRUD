@@ -1,0 +1,9 @@
+---
+description: Loose MVC layout adapted for Flask
+globs: backend/app/**/*.py
+alwaysApply: false
+---
+
+# Layout
+
+The project loosely follows MVC principles, adapted for Flask’s flexibility.

@@ -1,0 +1,9 @@
+---
+description: Cross-cutting helper utilities
+globs: backend/app/utils/**/*.py
+alwaysApply: false
+---
+
+# Utils
+
+Cross-cutting helpers (logging, error handling, etc.).

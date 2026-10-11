@@ -1,0 +1,9 @@
+---
+description: Service-layer business logic
+globs: backend/app/services/**/*.py
+alwaysApply: false
+---
+
+# Services
+
+Business logic and orchestration between repositories.

@@ -1,0 +1,9 @@
+---
+description: Pydantic models as data contracts
+globs: backend/app/models/**/*.py
+alwaysApply: false
+---
+
+# Models
+
+Define data contracts and validation using Pydantic.

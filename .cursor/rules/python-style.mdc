@@ -1,0 +1,10 @@
+---
+description: Python naming and comment style
+globs: backend/**/*.py
+alwaysApply: false
+---
+
+# Python style
+
+- Prefer explicit names over abbreviations (e.g. `Configuration` over `Config`). Use a single letter inside loops, comprehensions, or context managers.
+- Avoid redundant comments. No syntax comments or section-divider comments.
