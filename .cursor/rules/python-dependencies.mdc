@@ -1,0 +1,23 @@
+---
+description: Direct dependencies, compatible-release pins, and audit commands
+globs: backend/requirements*.txt,Makefile,backend/Dockerfile
+alwaysApply: false
+---
+
+# Python dependencies
+
+`backend/requirements.txt` stays next to the Dockerfile. The image build context is `./backend`, and the image installs only that file.
+
+Pin packages the backend imports. Leave transitive packages unpinned. Use a three-part compatible release: `Flask~=3.1.2` means `>=3.1.2` and `<3.2.0`.
+
+Black, pre-commit, and pip-audit belong in `backend/requirements-dev.txt`.
+
+`make` from the repo root lists the commands. They need Python 3.12 and `venv` (`python3-venv` on Debian/Ubuntu) and use a local `.venv`.
+
+- `make audit` checks both requirement files, including transitive packages. A finding in the runtime file is what the image installs.
+- `make upgrade` installs the newest release each `~=` pin allows, then audits.
+- `make outdated` lists newer releases outside the current pins. Review those; do not install them automatically.
+
+When a fix is a new minor or major, change that pin and run `make upgrade`. When a transitive package is vulnerable and its parent still allows the vulnerable release, add a direct `~=` pin, then remove it once the parent requires a fixed release.
+
+Keep this workflow out of the README.
